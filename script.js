@@ -1,63 +1,44 @@
 'use strict';
-//Nullish Operator and Optional Chaining
-//both were introducted in ES2020 and work well together
-//these are especially useful when receiving data from an API to check if they exist
+console.log(`Looping over Objects`);
+//objects are not iterables, so we can only loop through them indirectly using Object Keys, Values, and Entries
+//unlike arrays and iterables, we need to use Object to fetch the keys, values or entries
+//with iterables, it's enough to use a method like menu.entries()
+//with objects we can't use openingHours.entries()
+//instead we use Object.entries(openingHours)
+//Object returns an array of keys, values, or both, depending on which method is used
 
-console.log(`\n*** Nullish Operator ***`);
-//Nullish operator checks only for undefined and null values. Zero and empty strings are accepted, even if they are falsey values.
-
-const blankStr = '';
-const numZero = 0;
-let undefinedVar;
-console.log('' ?? 'nada');
-console.log(blankStr ?? 'nada');
-console.log(0 ?? 'nada');
-console.log(numZero ?? 'nada');
-console.log(undefined ?? 'nada');
-console.log(null ?? 'nada');
-console.log(undefinedVar ?? 'nada');
-
-console.log(`\n*** Optional Chaining ***`);
-//Optional Chaining checks if the property before the '?.' operator exists. if it does not, 'undefined' is immediately returned.
-//a property does not exist if it is null and undefined.
-//0 and '' are considered existing.
-
-const users = {
-  user01: {
-    userName: 'mario',
-    userEmail: 'mario@nintendo.com',
-  },
+const openingHours = {
+  thursday: { open: 11, close: 23 },
+  friday: { open: 11, close: 23 },
+  saturday: { open: 11, close: 23 },
 };
 
-console.log(users.user01?.userName ?? '1 nada');
+console.log(openingHours);
 
-//nickname is undefined
-console.log(users.user01?.userName?.nickname ?? '2 nada');
+console.log(`\n*** Object.keys() ***`);
+//Property Names are fetched through Object.keys()
+for (const day of Object.keys(openingHours)) {
+  console.log(day);
+}
 
-//abilities is undefined
-console.log(users.user01?.abilities?.powers ?? '3 nada');
+const properties = Object.keys(openingHours);
+console.log(properties);
 
-//user2 is undefined
-console.log(users.user02?.userName ?? '4 nada');
+console.log(`\n*** Object.values() ***`);
+//Property Values are fetched through Object.values()
+const values = Object.values(openingHours);
+console.log(values);
 
-console.log(`\n*** Optional Chaining and Methods ***`);
-//Optional Chaining also works with Methods by adding the operator between the function and the arguments
-const userPowers = {
-  shootFireball(x) {
-    return `${x} fireballs shot!`;
-  },
-};
+console.log(`\n*** Object.entries() ***`);
+//both keys and values are fetched through Object.entries()
+const entries = Object.entries(openingHours);
+console.log(entries);
 
-console.log(userPowers.shootFireball?.(3) ?? 'no power!');
-console.log(userPowers.shootLightning?.(3) ?? 'no such power!');
+for (const [x, y] of entries) {
+  console.log(`${x}: ${Object.entries(y)}`);
+}
 
-console.log(`\n*** Optional Chaining and Arrays ***`);
-//OC can be used to check if an array is empty
-
-let enemies = [];
-enemies = [{ name: 'goomba', threat: 1 }];
-
-console.log(enemies?.[0]?.name ?? 'no enemies');
-
-//we can also test if an element in the array exists
-console.log(enemies?.[1]?.name ?? 'no such enemy');
+//remember that we can destruct objects as shown below with {open,close}
+for (const [day, { open, close }] of entries) {
+  console.log(`${day}: ${open} - ${close}`);
+}
