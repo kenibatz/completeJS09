@@ -1,82 +1,38 @@
 'use strict';
-//Maps 02
-// another way to define maps is through arrays
-// the set method is better when dealing with dynamic info
-// the array method is better for static info
+//Strings
 
-console.log(`\n*** Maps ***`);
+console.log(`\nStrings`);
+const gameConsole = 'Nintendo Switch';
+const gameCartridge = 'Animal Crossing';
 
-console.log(`\n*** maps can be made with the array method`);
-const mapMario = new Map([
-  ['name', 'Mario'],
-  ['age', 41],
-  ['birthday', 'May 27, 1965'],
-  ['height', '155cm'],
-  [
-    'appearances',
-    [
-      ['Donkey Kong', 1985],
-      ['Mario Brothers', 1986],
-      ['Super Mario Brothers', 1985],
-    ],
-  ],
-  ['question01', 'Which game was the first on the Switch?'],
-  [(1, 'Super Mario Tennis')],
-  [2, 'Super Mario Soccer'],
-  [3, 'Super Mario All Stars'],
-  ['correct', 3],
-  [true, 'okey-dokey!'],
-  [false, 'oh no!'],
-]);
+console.log(`\n*** Strings can function like Arrays`);
+console.log(gameCartridge[7]);
+console.log(gameCartridge.indexOf('Crossing'));
+console.log(gameCartridge.lastIndexOf('mal'));
 
-console.log(mapMario);
+console.log(`\n*** Length`);
+console.log(gameCartridge.length);
+console.log(`Welcome to Nintendo!`.length);
 
-console.log(`\n*** Objects into Maps`);
-console.log(
-  `\nthe structure of the array method above is similar to object entries. \nwith this knowledge, we can convert an existing object into a map using Object.entries().`
-);
-
-const openingHours = {
-  thursday: { open: 11, close: 23 },
-  friday: { open: 11, close: 23 },
-  saturday: { open: 11, close: 23 },
-};
-
-console.log(openingHours);
-
-const hoursMap = new Map(Object.entries(openingHours));
-console.log(hoursMap);
-
-console.log(`\n*** Maps and For-loops`);
-console.log(
-  `\nbecause maps are iterable, we can easily use a for-loop on them. unlike objects, we don't need to to extract the info using Object.entries and we can use the map directly.`
-);
-for (const [key, value] of mapMario) {
-  console.log(`${key} : ${value}`);
-}
+console.log(`\n*** Slice`);
+console.log(gameConsole.slice(9));
+console.log(gameConsole.slice(0, 8));
+console.log(gameConsole.slice(0, gameConsole.indexOf(' ')));
+console.log(gameConsole.slice(-3));
 
 console.log(
-  `\nfurthermore, we can use conditions on keys to show only the values we want. `
+  `\n*** JavaScript is smart. When a method is applied to a string, it automatically converts the string primitive to an object. This process is called "boxing". After the method is finished it converts the object back into a string.`
 );
-for (const [key, value] of mapMario) {
-  if (typeof key === 'number') console.log(`${key}: ${value}`);
-}
 
-console.log(`\nMario Quiz`);
-const myAnswer = Number(prompt(mapMario.get('question01')));
+console.log(`\nlowercase, uppercase, trim and chaining`);
 
-//this is valid, but we can also use the code after this block
-// console.log(
-//   mapMario.get('correct') === myAnswer
-//     ? mapMario.get(true)
-//     : mapMario.get(false)
-// );
+const loginEmail = ' holaSenorDev@gmail.com ';
+console.log(`loginEmail: ${loginEmail}`);
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(`normalizedEmail: ${normalizedEmail}`);
 
-console.log(mapMario.get(mapMario.get('correct') === myAnswer));
-
-console.log(`\nMap to Array`);
-console.log(`use destructuring to convert a map into an array`);
-
-console.log([...mapMario]);
-console.log([...mapMario.keys()]);
-console.log([...mapMario.values()]);
+const loginName = 'sEnOrdEv';
+const normalizedLoginName =
+  loginName[0].toUpperCase() + loginName.slice(1).toLowerCase();
+console.log(`\nloginName: ${loginName}`);
+console.log(`\nnormalizedloginName: ${normalizedLoginName}`);
