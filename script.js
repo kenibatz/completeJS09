@@ -140,3 +140,59 @@ console.log(`\nRepeat`);
 const pressContinue = 'press any button to continue...';
 
 console.log(pressContinue.repeat(3));
+
+console.log(`\n*** Challenge ***`);
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+/*
+test data:
+underscore_case
+ first_name
+Some_Variable
+ calculate_AGE
+delated_departure
+*/
+/*document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  console.log(`textarea: ${text}`);
+  const newline = text.split('\n');
+  console.log(newline);
+
+  for (const n of newline) {
+    // console.log(n);
+    const splitNewline = n.toLowerCase().split('_');
+    // console.log(`normalizedNewline: ${normalizedNewline}...`);
+    // console.log(
+    //   `${
+    //     splitNewline[0] +
+    //     splitNewline[1][0].toUpperCase() +
+    //     splitNewline[1].slice(1)
+    //   }`
+    // );
+    const newCamelCase =
+      splitNewline[0].trim() +
+      splitNewline[1][0].toUpperCase().trim() +
+      splitNewline[1].slice(1).trim();
+    console.log(newCamelCase);
+
+    // for (const n2 of normalizedNewline) {
+    //   console.log(`${n2[1]}...`);
+    // }
+  }
+});
+*/
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  const rows = text.split('\n');
+  console.log(rows);
+  for (const row of rows) {
+    const [first, second] = row.toLowerCase().trim().split('_');
+    // console.log(first, second[0].toUpperCase());
+    // second.replace(second[0])
+    // const newCamelCase = first + second[0].toUpperCase() + second.slice(1);
+    const newCamelCase =
+      first + second.replace(second[0], second[0].toUpperCase());
+    console.log(newCamelCase);
+  }
+});
